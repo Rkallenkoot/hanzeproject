@@ -16,10 +16,4 @@ class Medewerker extends Eloquent
 	 * an array with: "created_at" and/or "updated_at"
 	 */
 	public $timestamps = false;
-
-	// Veel op veel zonder intersectie gegevens
-	public function afdelingen()
-	{
-		return $this->belongsToMany('Afdeling');
-	}
 }
