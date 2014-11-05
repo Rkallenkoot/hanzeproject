@@ -1,0 +1,8 @@
+.DS_Store
+Thumbs.db
+composer.lock
+composer.phar
+.env.*.php
+.env.php
+/vendor
+.fuse*
