@@ -37,10 +37,10 @@ class Admin_Ingredienten extends Controller
 		return http_response_code(200);
 	}
 
-	public function update($id) 
+	public function update($id)
 	{
 		if(!$_SERVER["REQUEST_METHOD"] == 'POST' || !is_numeric($id)){
-			return;
+			return false;
 		}
 
 		$ingr = Ingredient::find($id);
@@ -54,10 +54,10 @@ class Admin_Ingredienten extends Controller
 		return header("Location: " . BASE . "/admin_ingredienten");
 	}
 
-	public function store() 
+	public function store()
 	{
 		if(!$_SERVER["REQUEST_METHOD"] == "POST"){
-			return;
+			return false;
 		}
 		if(empty($_POST['Omschrijving']) || empty($_POST['Prijs']))
 		{
