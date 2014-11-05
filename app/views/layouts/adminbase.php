@@ -4,7 +4,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>asd</title>
+	<title>{% block title %} {% endblock %}</title>
+	<link rel="shortcut icon" href="{{constant('ASSET_ROOT')}}/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="{{constant('ASSET_ROOT')}}/favicon.ico" type="image/x-icon">
 	<link href="{{ constant('ASSET_ROOT') }}/css/bootstrap.min.css" rel="stylesheet">
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -25,7 +27,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="{{constant('BASE')}}/">Eat.it</a>
+						<a class="navbar-brand" href="{{constant('BASE')}}/">Eat.it or Beat it!</a>
 					</div>
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav navbar-right">
