@@ -30,14 +30,11 @@ class Admin_Ingredienten extends Controller
 	public function destroy($id)
 	{
 		if(!$_SERVER["REQUEST_METHOD"] == 'POST' || !is_numeric($id)){
-			return header("Location: " . BASE . "/admin_ingredienten");
-			//return http_response_code(404);
+			return http_response_code(404);
 		}
 		$ingredient = new Ingredient;
 		$ingredient->destroy($id);
-		//return http_response_code(200);
-
-		return header("Location: " . BASE . "/admin_ingredienten");
+		return http_response_code(200);
 	}
 
 	public function update($id) 
