@@ -6,3 +6,9 @@ function confirm_destroy(url, id){
 		table.rows('tr#'+id).remove().draw();
 	});
 }
+function orderMenu(url){
+	$.post(url, function(data){
+		console.log(data);
+		location.reload();
+	});
+}
