@@ -8,7 +8,6 @@
 	<link rel="shortcut icon" href="{{constant('ASSET_ROOT')}}/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="{{constant('ASSET_ROOT')}}/favicon.ico" type="image/x-icon">
 	<link href="{{ constant('ASSET_ROOT') }}/css/bootstrap.min.css" rel="stylesheet">
-	<link href="{{constant('ASSET_ROOT')}}/css/theme.css" rel="stylesheet">
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
