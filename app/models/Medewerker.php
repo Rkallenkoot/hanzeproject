@@ -9,7 +9,7 @@ class Medewerker extends Eloquent
 	protected $table = "medewerker";
 
 	protected $fillable = array("voornaam", "achternaam", "functie",
-		"gebruikersnaam", "wachtwoord");
+		"gebruikersnaam", "wachtwoord", "afdeling");
 
 	/**
 	 * Timestamps should be false or
