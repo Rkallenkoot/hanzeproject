@@ -32,4 +32,9 @@ class Menu extends Eloquent
 	{
 		return $this->belongsToMany('Recept');
 	}
+
+	public function daghap()
+	{
+		return $this::where('actief','=',true)->where('daghap','=',true)->get();
+	}
 }
