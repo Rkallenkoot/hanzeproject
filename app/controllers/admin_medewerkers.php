@@ -47,9 +47,13 @@ class Admin_Medewerkers extends Controller
 		$med->voornaam = $_POST['Voornaam'];
 		$med->achternaam = $_POST['Achternaam'];
 		$med->functie = $_POST['Functie'];
+		$med->afdeling = $_POST['Afdeling'];
 		$med->gebruikersnaam = $_POST['Gebruikersnaam'];
-		$med->wachtwoord = md5($_POST['Wachtwoord']);
-		$ingr->save();
+
+		if($_POST["Wachtwoord"] != "") {
+			$med->wachtwoord = md5($_POST['Wachtwoord']);
+		}
+		$med->save();
 		return header("Location: " . BASE . "/admin_medewerkers");
 	}
 
@@ -64,13 +68,15 @@ class Admin_Medewerkers extends Controller
 		{
 			return header("Location: " . BASE . "/admin_medewerkers/create");
 		}
-		$ingr = new Ingredient(array(
+		$med = new Medewerker(array(
 			'voornaam' => $_POST['Voornaam'],
 			'achternaam' => $_POST['Achternaam'],
 			'functie' => $_POST['Functie'],
+			'afdeling' => $_POST['Afdeling'],
 			'gebruikersnaam' => $_POST['Gebruikersnaam'],
-			'wachtwoord' => md5($_POST['Wachtwoord']));
-		$ingr->save();
+			'wachtwoord' => md5($_POST['Wachtwoord'])
+			));
+		$med->save();
 		return header("Location: " . BASE . "/admin_medewerkers");
 	}
 
