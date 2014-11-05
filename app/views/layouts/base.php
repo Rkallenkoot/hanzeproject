@@ -19,6 +19,8 @@
 			{% endblock %}
 		</head>
 		<body>
+		{% include 'layouts/menu.php' %}
+
 			{% block header %}
 			{% endblock %}
 			<div class="container">
