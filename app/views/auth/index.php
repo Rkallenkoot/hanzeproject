@@ -34,7 +34,7 @@ Eat.it or Beat it!
 			<div class="form-group">
 				<label for="password" class="col-sm-4 control-label">Password*</label>
 				<div class="col-sm-8">
-					<input type="password" class="form-control" name="password" id="password" required placeholder="Password">
+					<input type="password" class="form-control" name="wachtwoord" id="password" required placeholder="Password">
 				</div>
 			</div>
 			<div class="form-group">
