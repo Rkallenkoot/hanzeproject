@@ -24,6 +24,7 @@ class Order extends Controller
 		{
 			return header("Location: ".BASE."/");
 		}
+		// Update the $_SESSION['menu'] with the chosen Quantities
 		$_SESSION['menu'] = $_POST['menu'];
 
 		return header("Location: ".BASE."/");
@@ -34,7 +35,7 @@ class Order extends Controller
 	{
 		if(!$_SERVER['REQUEST_METHOD'] == "POST" || !isset($menu))
 		{
-			return "rommel is kut: ". $_SESSION['menu'];
+			return "rommel : ". $_SESSION['menu'];
 		}
 		return $_SESSION['menu'][$menu] += 1;
 	}

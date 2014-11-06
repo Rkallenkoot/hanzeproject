@@ -16,4 +16,5 @@ class Medewerker extends Eloquent
 	 * an array with: "created_at" and/or "updated_at"
 	 */
 	public $timestamps = false;
+
 }
