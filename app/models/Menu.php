@@ -21,7 +21,7 @@ class Menu extends Eloquent
 
 	public function orders()
 	{
-		return $this->belongsToMany('Order')->withPivot('aantal', 'prijs');
+		return $this->belongsToMany('Order', 'order_regel')->withPivot('aantal', 'prijs');
 	}
 
 	public function soort()

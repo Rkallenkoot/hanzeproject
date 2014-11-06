@@ -22,8 +22,8 @@ class Order extends Eloquent
 	}
 
 	// Veel op veel met intersectie gegevens
-	public function orders()
+	public function menus()
 	{
-		return $this->belongsToMany('Menu')->withPivot('aantal', 'prijs');
+		return $this->belongsToMany('Menu', 'order_regel')->withPivot('aantal', 'prijs');
 	}
 }
