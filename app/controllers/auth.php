@@ -10,16 +10,17 @@ class Auth extends Controller
 
 	public function login()
 	{
-		if(!$_SERVER['REQUEST_METHOD'] == "POST" || !isset($_POST['gebruikersnaam']) || !isset($_POST['wachtwoord']))
+		if(!$_SERVER['REQUEST_METHOD'] == "POST"
+			|| !isset($_POST['gebruikersnaam']) || !isset($_POST['wachtwoord']))
 		{
 			return http_response_code(404);
 		}
-		// check of die in de database staat
 		$username = $_POST['gebruikersnaam'];
 		$password = $_POST['wachtwoord'];
 
 		$user = Klant::where('gebruikersnaam', '=', $username)->first();
 
+		// check of die in de database staat
 		if(!$user){
 			return $this->view('auth/index',array(
 				'message' => 'Onbekend gebruikersnaam'));
