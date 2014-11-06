@@ -8,7 +8,7 @@ class Medewerker extends Eloquent
 	 */
 	protected $table = "medewerker";
 
-	protected $fillable = array("voornaam", "achternaam", "functie",
+	protected $fillable = array("voornaam", "achternaam", "functie", "afdeling",
 		"gebruikersnaam", "wachtwoord");
 
 	/**
