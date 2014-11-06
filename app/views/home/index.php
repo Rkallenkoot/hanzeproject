@@ -15,7 +15,6 @@ Eat.it or Beat it!
 {% block header %}
 
 {% if daghap %}
-<!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
 	<div class="container">
 		<h1><img src="{{constant('ASSET_ROOT')}}/images/eatit.jpg" alt="Eat it Logo!" class="img-circle"> Daghap</h1>
@@ -35,9 +34,7 @@ Eat.it or Beat it!
 {% endblock %}
 
 {% block content %}
-
 <div class="row">
-	{% if msg %}<h2>{{msg}}</h2>{% endif %}
 	<form class="form-horizontal" action="{{constant('BASE')}}/order/update" method="POST" role="form">
 		{% for soort in soorten %}
 		<div class="col-md-3">

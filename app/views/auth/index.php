@@ -22,6 +22,7 @@ Eat.it or Beat it!
 
 {% block content %}
 <div class="row">
+	{% if message %}<h3>{{message}}</h3>{% endif %}
 	<div class="col-md-5">
 		<form class="form-horizontal" action="{{constant('BASE')}}/auth/login" role="form" method="POST">
 			<legend class="text-center">Inloggen</legend>

@@ -40,9 +40,7 @@
 				{% block footer %}
 
 				{% endblock %}
-			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 			<script src="{{ constant('ASSET_ROOT')}}/js/jquery.min.js"></script>
-			<!-- Include all compiled plugins (below), or include individual files as needed -->
 			<script src="{{ constant('ASSET_ROOT')}}/js/bootstrap.min.js"></script>
 			<script src="{{ constant('ASSET_ROOT')}}/js/general.js"></script>
 		</body>

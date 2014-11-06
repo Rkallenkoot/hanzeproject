@@ -13,7 +13,7 @@ class Auth extends Controller
 		if(!$_SERVER['REQUEST_METHOD'] == "POST"
 			|| !isset($_POST['gebruikersnaam']) || !isset($_POST['wachtwoord']))
 		{
-			return http_response_code(404);
+			return header("Location: ".BASE."/auth");
 		}
 		$username = $_POST['gebruikersnaam'];
 		$password = $_POST['wachtwoord'];
@@ -22,18 +22,22 @@ class Auth extends Controller
 
 		// check of die in de database staat
 		if(!$user){
-			return $this->view('auth/index',array(
-				'message' => 'Onbekend gebruikersnaam'));
+			return header("Location: ".BASE."/auth");
 		}
 		elseif($user && $user->wachtwoord == md5($password))
 		{
 			// Log in
 			$_SESSION['loggedIn']       = true;
+			$_SESSION['userid']         = $user->id;
 			$_SESSION['gebruikersnaam'] = $user->gebruikersnaam;
 			$_SESSION['voornaam']       = $user->voornaam;
 			$_SESSION['achternaam']     = $user->achternaam;
 			$_SESSION['adres']          = $user->adres;
 			return header("Location:".BASE."/");
+		}
+		else {
+			return $this->view("auth/index", array(
+				'message' => 'Onbekende combinatie!'));
 		}
 	}
 
