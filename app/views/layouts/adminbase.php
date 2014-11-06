@@ -38,6 +38,7 @@
 							<li><a href="{{constant('BASE')}}/admin_menus">Menu's</a></li>
 							<li><a href="{{constant('BASE')}}/admin_menu_soorten">Menu soorten</a></li>
 							<li><a href="{{constant('BASE')}}/admin_medewerkers">Medewerkers</a></li>
+							<li><a href="{{constant('BASE')}}/admin_klanten">Klanten</a></li>
 
 							<li><a href="{{constant('BASE')}}/admin_loguit">Loguit</a></li>
 						</div><!--/.navbar-collapse -->
