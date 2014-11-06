@@ -10,6 +10,7 @@ class Recept extends Eloquent
 
 	protected $fillable = array("naam");
 
+	// protected $appends = array('aantal');
 	/**
 	 * Timestamps should be false or
 	 * an array with: "created_at" and/or "updated_at"
@@ -19,13 +20,13 @@ class Recept extends Eloquent
 	// Veel op veel zonder intersectie gegevens
 	public function menus()
 	{
-		return $this->belongsToMany('Menu');
+		return $this->belongsToMany('Menu', "menu_recept");
 	}
 
 	// Veel op veel met intersectie gegevens
 	public function ingredienten()
 	{
-		return $this->belongsToMany('Ingredient')->withPivot('aantal');
+		return $this->belongsToMany('Ingredient', 'recept_ingredient')->withPivot('aantal');
 	}
 
 }

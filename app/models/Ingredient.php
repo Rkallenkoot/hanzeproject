@@ -16,16 +16,10 @@ class Ingredient extends Eloquent
 	 */
 	public $timestamps = false;
 
-	// Veel op veel zonder intersectie gegevens
-	public function menus()
-	{
-		return $this->belongsToMany('Menu');
-	}
-
 	// Veel op veel met intersectie gegevens
-	public function ingredienten()
+	public function recepten()
 	{
-		return $this->belongsToMany('Ingredient')->withPivot('aantal');
+		return $this->belongsToMany('Recept')->withPivot('aantal');
 	}
 
 }

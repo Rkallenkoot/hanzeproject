@@ -13,8 +13,8 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="{{constant('BASE')}}"/>Home</a></li>
 
-				<li><a href="{{constant('BASE')}}/auth/register">Registeren</a></li>
-				<li><a href="{{constant('BASE')}}/auth/inloggen">Inloggen</a></li>
+				<li><a href="{{constant('BASE')}}/auth">Registeren</a></li>
+				<li><a href="{{constant('BASE')}}/auth">Inloggen</a></li>
 			</ul>
 		</div><!--/.navbar-collapse -->
 	</div>
