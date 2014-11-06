@@ -37,7 +37,7 @@ Eat.it or Beat it!
 {% block content %}
 
 <div class="row">
-	<h2>{{msg}}</h2>
+	{% if msg %}<h2>{{msg}}</h2>{% endif %}
 	<form class="form-horizontal" action="{{constant('BASE')}}/order/update" method="POST" role="form">
 		{% for soort in soorten %}
 		<div class="col-md-3">
