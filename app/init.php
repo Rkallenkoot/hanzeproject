@@ -1,4 +1,9 @@
 <?php
+ini_set("SMTP","smarthost.hanze.nl");
+ini_set('smtp_server', 'smarthost.hanze.nl');
+ini_set("smtp_port","25");
+ini_set("sendmail_from","r.kallenkoot@st.hanze.nl");
+
 // Root path for inclusion
 define("INC_ROOT", dirname(__DIR__));
 
