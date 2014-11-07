@@ -1,255 +1,425 @@
--- MySQL Workbench Forward Engineering
+-- phpMyAdmin SQL Dump
+-- version 4.2.7.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Nov 07, 2014 at 11:16 AM
+-- Server version: 5.6.20
+-- PHP Version: 5.5.15
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-
--- -----------------------------------------------------
--- Schema hanzeproject
--- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `hanzeproject` ;
-
--- -----------------------------------------------------
--- Schema hanzeproject
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `hanzeproject` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `hanzeproject` ;
-
--- -----------------------------------------------------
--- Table `hanzeproject`.`ingredient`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `hanzeproject`.`ingredient` ;
-
-CREATE TABLE IF NOT EXISTS `hanzeproject`.`ingredient` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `omschrijving` VARCHAR(45) NOT NULL,
-  `prijs` DECIMAL(2) NULL DEFAULT 0,
-  `tv` INT NULL DEFAULT 0,
-  `ib` INT NULL DEFAULT 0,
-  `gr` INT NULL DEFAULT 0,
-  `sg` INT NULL DEFAULT 0,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
--- -----------------------------------------------------
--- Table `hanzeproject`.`menu_soort`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `hanzeproject`.`menu_soort` ;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
-CREATE TABLE IF NOT EXISTS `hanzeproject`.`menu_soort` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `naam` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `soort_UNIQUE` (`naam` ASC))
-ENGINE = InnoDB;
+--
+-- Database: `hanzeproject`
+--
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `hanzeproject`.`menu`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `hanzeproject`.`menu` ;
+--
+-- Table structure for table `ingredient`
+--
 
-CREATE TABLE IF NOT EXISTS `hanzeproject`.`menu` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `naam` VARCHAR(45) NOT NULL,
-  `prijs` DECIMAL(2) NOT NULL,
-  `actief` TINYINT(1) NULL DEFAULT 0,
-  `daghap` TINYINT(1) NULL DEFAULT 0,
-  `menu_soort_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_menu_menu_soort1_idx` (`menu_soort_id` ASC),
-  CONSTRAINT `fk_menu_menu_soort1`
-    FOREIGN KEY (`menu_soort_id`)
-    REFERENCES `hanzeproject`.`menu_soort` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `ingredient` (
+`id` int(11) NOT NULL,
+  `omschrijving` varchar(45) NOT NULL,
+  `prijs` decimal(10,2) DEFAULT '0.00',
+  `tv` int(11) DEFAULT '0',
+  `ib` int(11) DEFAULT '0',
+  `gr` int(11) DEFAULT '0',
+  `sg` int(11) DEFAULT '0'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
+--
+-- Dumping data for table `ingredient`
+--
 
--- -----------------------------------------------------
--- Table `hanzeproject`.`recept`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `hanzeproject`.`recept` ;
+INSERT INTO `ingredient` (`id`, `omschrijving`, `prijs`, `tv`, `ib`, `gr`, `sg`) VALUES
+(1, 'Heineken bier', '0.00', 60, 0, 0, 12),
+(2, 'Rode wijn', '0.00', 25, 0, 0, 10),
+(3, 'Witte wijn', '0.00', 25, 0, 0, 10),
+(4, 'Melk', '0.00', 60, 0, 0, 20),
+(5, 'Coca Cola', '0.00', 50, 0, 0, 20),
+(6, 'Bief', '0.00', 50, 0, 0, 20),
+(7, 'Tongfilet', '0.00', 50, 0, 0, 20);
 
-CREATE TABLE IF NOT EXISTS `hanzeproject`.`recept` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `naam` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `klant`
+--
 
--- -----------------------------------------------------
--- Table `hanzeproject`.`recept_ingredient`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `hanzeproject`.`recept_ingredient` ;
+CREATE TABLE IF NOT EXISTS `klant` (
+`id` int(11) NOT NULL,
+  `voornaam` varchar(45) NOT NULL,
+  `achternaam` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `telefoon` varchar(13) DEFAULT NULL,
+  `adres` varchar(45) NOT NULL,
+  `postcode` varchar(45) DEFAULT NULL,
+  `woonplaats` varchar(45) NOT NULL,
+  `gebruikersnaam` varchar(45) NOT NULL,
+  `wachtwoord` varchar(32) NOT NULL,
+  `datum_registratie` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT=' ' AUTO_INCREMENT=13 ;
 
-CREATE TABLE IF NOT EXISTS `hanzeproject`.`recept_ingredient` (
-  `recept_id` INT NOT NULL,
-  `ingredient_id` INT NOT NULL,
-  `aantal` INT NOT NULL,
-  PRIMARY KEY (`recept_id`, `ingredient_id`),
-  INDEX `fk_RECEPT_INGREDIENT_ingredient1_idx` (`ingredient_id` ASC),
-  CONSTRAINT `fk_RECEPT_INGREDIENT_recept1`
-    FOREIGN KEY (`recept_id`)
-    REFERENCES `hanzeproject`.`recept` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_RECEPT_INGREDIENT_ingredient1`
-    FOREIGN KEY (`ingredient_id`)
-    REFERENCES `hanzeproject`.`ingredient` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+--
+-- Dumping data for table `klant`
+--
 
+INSERT INTO `klant` (`id`, `voornaam`, `achternaam`, `email`, `telefoon`, `adres`, `postcode`, `woonplaats`, `gebruikersnaam`, `wachtwoord`, `datum_registratie`) VALUES
+(1, '1234', '1234', '1234@test.com', NULL, '1234', NULL, '1234', '1234', '81dc9bdb52d04dc20036dbd8313ed055', '2014-11-06 09:18:34'),
+(2, 'Roelof', 'Kallenkoot', 'r.kallenkoot@st.hanze.nl', '', 'testadres', '9201KG', 'Drachten', 'roelof000', 'bae12b8d321e2a300d130b2c814b4acb', '2014-11-06 09:36:32'),
+(3, 'Roelof', 'Kallenkoot', 'r.kallenkoot@st.hanze.nl', '', 'asdasds', '', 'asdasd', 'roelof1', 'bae12b8d321e2a300d130b2c814b4acb', '2014-11-06 09:40:22'),
+(4, 'roelof', 'kallenkoot', 'r.kallenkoot@st.hanze.nl', '', '123123', '', '123123', 'roelof2', 'bae12b8d321e2a300d130b2c814b4acb', '2014-11-06 09:46:50'),
+(5, 'roelof', 'kallenkoot', 'r.kallenkoot@st.hanze.nl', '', '123123', '', '123123', 'roelof3', 'bae12b8d321e2a300d130b2c814b4acb', '2014-11-06 09:48:28'),
+(6, 'roelof', 'Kallenkoot', 'r.kallenkoot@st.hanze.nl', '', 'ECHT adres', '', 'Drachten', 'roelof4', 'bae12b8d321e2a300d130b2c814b4acb', '2014-11-06 09:57:09'),
+(7, 'Roelof', 'Kallenkoot', 'r.kallenkoot@st.hanze.nl', '', '1234', '', '1234', 'roelof5', 'bae12b8d321e2a300d130b2c814b4acb', '2014-11-06 10:05:41'),
+(8, 'Roelof', 'Kallenkoot', 'r.kallenkoot@st.hanze.nl', '', '1234', '', '1234', 'roelof6', 'bae12b8d321e2a300d130b2c814b4acb', '2014-11-06 10:07:36'),
+(9, 'Roelof', 'Kallenkoot', 'r.kallenkoot@st.hanze.nl', '', '1234', '', '1234', 'roelof7', 'bae12b8d321e2a300d130b2c814b4acb', '2014-11-06 10:07:57'),
+(10, 'Joel', 'Hoekstra', 'j.s.hoekstra@st.hanze.nl', '', 'ECHTE Joel Adres', '1234', 'Hoogeveen', 'jlsa', '021b5647ee1d0319c72dd543d25d2df8', '2014-11-06 11:26:53'),
+(11, 'Rick', 'Venema', 'rvenema@test.nl', '', '12345', '', 'testplaats', 'rvenema', '891f490e5d7bdb06d90d56f8d7db405f', '2014-11-06 12:13:25'),
+(12, 'test123', 'test123', 'test@eatit.nl', '', 'teset123', '', 'test123', 'test123', 'cc03e747a6afbbcbf8be7668acfebee5', '2014-11-06 20:49:52');
 
--- -----------------------------------------------------
--- Table `hanzeproject`.`klant`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `hanzeproject`.`klant` ;
+-- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `hanzeproject`.`klant` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `voornaam` VARCHAR(45) NOT NULL,
-  `achternaam` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `telefoon` VARCHAR(13) NULL,
-  `adres` VARCHAR(45) NOT NULL,
-  `postcode` VARCHAR(45) NULL,
-  `woonplaats` VARCHAR(45) NOT NULL,
-  `gebruikersnaam` VARCHAR(45) NOT NULL,
-  `wachtwoord` VARCHAR(32) NOT NULL,
-  `datum_registratie` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `gebruikersnaam_UNIQUE` (`gebruikersnaam` ASC))
-ENGINE = InnoDB
-COMMENT = ' ';
+--
+-- Table structure for table `medewerker`
+--
 
+CREATE TABLE IF NOT EXISTS `medewerker` (
+`id` int(11) NOT NULL,
+  `voornaam` varchar(45) NOT NULL,
+  `achternaam` varchar(45) NOT NULL,
+  `functie` varchar(45) NOT NULL,
+  `afdeling` varchar(45) NOT NULL,
+  `gebruikersnaam` varchar(45) NOT NULL,
+  `wachtwoord` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
--- -----------------------------------------------------
--- Table `hanzeproject`.`order`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `hanzeproject`.`order` ;
+-- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `hanzeproject`.`order` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `klant_id` INT NOT NULL,
-  `status` ENUM('geplaatst', 'in bereiding', 'klaar') NULL DEFAULT 'geplaatst',
-  `betaald` TINYINT(1) NULL DEFAULT 0,
-  `geplaatst` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  INDEX `fk_ORDER_klant1_idx` (`klant_id` ASC),
-  CONSTRAINT `fk_ORDER_klant1`
-    FOREIGN KEY (`klant_id`)
-    REFERENCES `hanzeproject`.`klant` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+--
+-- Table structure for table `menu`
+--
 
+CREATE TABLE IF NOT EXISTS `menu` (
+`id` int(11) NOT NULL,
+  `naam` varchar(45) NOT NULL,
+  `prijs` decimal(10,2) NOT NULL,
+  `actief` tinyint(1) DEFAULT '0',
+  `daghap` tinyint(1) DEFAULT '0',
+  `menu_soort_id` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
--- -----------------------------------------------------
--- Table `hanzeproject`.`order_regel`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `hanzeproject`.`order_regel` ;
+--
+-- Dumping data for table `menu`
+--
 
-CREATE TABLE IF NOT EXISTS `hanzeproject`.`order_regel` (
-  `order_id` INT NOT NULL,
-  `menu_id` INT NOT NULL,
-  `aantal` INT NOT NULL,
-  `prijs` DECIMAL(2) NOT NULL,
-  PRIMARY KEY (`order_id`, `menu_id`),
-  INDEX `fk_ORDER_REGEL_menu1_idx` (`menu_id` ASC),
-  INDEX `fk_order_regel_order1_idx` (`order_id` ASC),
-  CONSTRAINT `fk_ORDER_REGEL_menu1`
-    FOREIGN KEY (`menu_id`)
-    REFERENCES `hanzeproject`.`menu` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_order_regel_order1`
-    FOREIGN KEY (`order_id`)
-    REFERENCES `hanzeproject`.`order` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+INSERT INTO `menu` (`id`, `naam`, `prijs`, `actief`, `daghap`, `menu_soort_id`) VALUES
+(1, 'Six Pack Heineken', '5.00', 1, 0, 4),
+(2, 'TestVegaMenu', '10.00', 1, 0, 1),
+(3, 'Biefstuk Schotel', '10.00', 1, 1, 2),
+(4, 'Rode Wijn', '5.00', 1, 0, 4),
+(5, 'Tongfilet Schotel', '12.00', 1, 0, 3);
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `hanzeproject`.`medewerker`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `hanzeproject`.`medewerker` ;
+--
+-- Table structure for table `menu_recept`
+--
 
-CREATE TABLE IF NOT EXISTS `hanzeproject`.`medewerker` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `voornaam` VARCHAR(45) NOT NULL,
-  `achternaam` VARCHAR(45) NOT NULL,
-  `functie` VARCHAR(45) NOT NULL,
-  `gebruikersnaam` VARCHAR(45) NOT NULL,
-  `wachtwoord` VARCHAR(32) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `menu_recept` (
+  `menu_id` int(11) NOT NULL,
+  `recept_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `menu_recept`
+--
 
--- -----------------------------------------------------
--- Table `hanzeproject`.`afdeling`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `hanzeproject`.`afdeling` ;
+INSERT INTO `menu_recept` (`menu_id`, `recept_id`) VALUES
+(1, 1),
+(4, 2),
+(3, 3),
+(5, 4);
 
-CREATE TABLE IF NOT EXISTS `hanzeproject`.`afdeling` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `naam` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `naam_UNIQUE` (`naam` ASC))
-ENGINE = InnoDB;
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `menu_soort`
+--
 
--- -----------------------------------------------------
--- Table `hanzeproject`.`afdeling_medewerker`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `hanzeproject`.`afdeling_medewerker` ;
+CREATE TABLE IF NOT EXISTS `menu_soort` (
+`id` int(11) NOT NULL,
+  `naam` varchar(45) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
-CREATE TABLE IF NOT EXISTS `hanzeproject`.`afdeling_medewerker` (
-  `medewerker_id` INT NOT NULL,
-  `afdeling_id` INT NOT NULL,
-  PRIMARY KEY (`medewerker_id`, `afdeling_id`),
-  INDEX `fk_afdelingen_has_medewerker_medewerker1_idx` (`medewerker_id` ASC),
-  INDEX `fk_afdeling__medewerker_afdeling1_idx` (`afdeling_id` ASC),
-  CONSTRAINT `fk_afdelingen_has_medewerker_medewerker1`
-    FOREIGN KEY (`medewerker_id`)
-    REFERENCES `hanzeproject`.`medewerker` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_afdeling__medewerker_afdeling1`
-    FOREIGN KEY (`afdeling_id`)
-    REFERENCES `hanzeproject`.`afdeling` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+--
+-- Dumping data for table `menu_soort`
+--
 
+INSERT INTO `menu_soort` (`id`, `naam`) VALUES
+(4, 'Dranken'),
+(1, 'Vegetarisch'),
+(3, 'Vis'),
+(2, 'Vlees');
 
--- -----------------------------------------------------
--- Table `hanzeproject`.`menu_recept`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `hanzeproject`.`menu_recept` ;
+-- --------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `hanzeproject`.`menu_recept` (
-  `menu_id` INT NOT NULL,
-  `recept_id` INT NOT NULL,
-  PRIMARY KEY (`menu_id`, `recept_id`),
-  INDEX `fk_menu_has_recept_recept1_idx` (`recept_id` ASC),
-  INDEX `fk_menu_has_recept_menu1_idx` (`menu_id` ASC),
-  CONSTRAINT `fk_menu_has_recept_menu1`
-    FOREIGN KEY (`menu_id`)
-    REFERENCES `hanzeproject`.`menu` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_menu_has_recept_recept1`
-    FOREIGN KEY (`recept_id`)
-    REFERENCES `hanzeproject`.`recept` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+--
+-- Table structure for table `order`
+--
 
+CREATE TABLE IF NOT EXISTS `order` (
+`id` int(11) NOT NULL,
+  `klant_id` int(11) NOT NULL,
+  `status` enum('geplaatst','in bereiding','klaar') DEFAULT 'geplaatst',
+  `betaald` tinyint(1) DEFAULT '0',
+  `geplaatst` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`id`, `klant_id`, `status`, `betaald`, `geplaatst`) VALUES
+(1, 6, 'geplaatst', 0, '2014-11-07 09:54:01'),
+(2, 6, 'geplaatst', 0, '2014-11-07 09:54:22'),
+(3, 6, 'geplaatst', 0, '2014-11-07 09:55:37'),
+(4, 10, 'geplaatst', 0, '2014-11-07 10:02:50'),
+(5, 10, 'geplaatst', 0, '2014-11-07 10:07:40'),
+(6, 10, 'geplaatst', 0, '2014-11-07 10:09:31'),
+(7, 10, 'geplaatst', 0, '2014-11-07 10:09:37'),
+(8, 10, 'geplaatst', 0, '2014-11-07 10:09:57'),
+(9, 10, 'geplaatst', 0, '2014-11-07 10:10:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_regel`
+--
+
+CREATE TABLE IF NOT EXISTS `order_regel` (
+  `order_id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL,
+  `aantal` int(11) NOT NULL,
+  `prijs` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `order_regel`
+--
+
+INSERT INTO `order_regel` (`order_id`, `menu_id`, `aantal`, `prijs`) VALUES
+(2, 1, 2, '5.00'),
+(2, 3, 4, '10.00'),
+(2, 4, 2, '5.00'),
+(3, 1, 2, '5.00'),
+(3, 3, 4, '10.00'),
+(3, 4, 2, '5.00'),
+(4, 2, 1, '10.00'),
+(4, 3, 1, '10.00'),
+(5, 2, 1, '10.00'),
+(5, 3, 1, '10.00'),
+(6, 2, 1, '10.00'),
+(6, 3, 1, '10.00'),
+(7, 2, 1, '10.00'),
+(7, 3, 1, '10.00'),
+(8, 2, 1, '10.00'),
+(8, 3, 1, '10.00'),
+(9, 2, 1, '10.00'),
+(9, 3, 1, '10.00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recept`
+--
+
+CREATE TABLE IF NOT EXISTS `recept` (
+`id` int(11) NOT NULL,
+  `naam` varchar(45) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `recept`
+--
+
+INSERT INTO `recept` (`id`, `naam`) VALUES
+(1, 'Six pack Heineken'),
+(2, 'Rode Wijn'),
+(3, 'Biefstuk Schotel'),
+(4, 'Tongfilet Schotel');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recept_ingredient`
+--
+
+CREATE TABLE IF NOT EXISTS `recept_ingredient` (
+  `recept_id` int(11) NOT NULL,
+  `ingredient_id` int(11) NOT NULL,
+  `aantal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `recept_ingredient`
+--
+
+INSERT INTO `recept_ingredient` (`recept_id`, `ingredient_id`, `aantal`) VALUES
+(1, 1, 6),
+(2, 2, 1),
+(3, 6, 1),
+(4, 7, 1);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `ingredient`
+--
+ALTER TABLE `ingredient`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `klant`
+--
+ALTER TABLE `klant`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `gebruikersnaam_UNIQUE` (`gebruikersnaam`);
+
+--
+-- Indexes for table `medewerker`
+--
+ALTER TABLE `medewerker`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `menu`
+--
+ALTER TABLE `menu`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_menu_menu_soort1_idx` (`menu_soort_id`);
+
+--
+-- Indexes for table `menu_recept`
+--
+ALTER TABLE `menu_recept`
+ ADD PRIMARY KEY (`menu_id`,`recept_id`), ADD KEY `fk_menu_has_recept_recept1_idx` (`recept_id`), ADD KEY `fk_menu_has_recept_menu1_idx` (`menu_id`);
+
+--
+-- Indexes for table `menu_soort`
+--
+ALTER TABLE `menu_soort`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `soort_UNIQUE` (`naam`);
+
+--
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_ORDER_klant1_idx` (`klant_id`);
+
+--
+-- Indexes for table `order_regel`
+--
+ALTER TABLE `order_regel`
+ ADD PRIMARY KEY (`order_id`,`menu_id`), ADD KEY `fk_ORDER_REGEL_menu1_idx` (`menu_id`), ADD KEY `fk_order_regel_order1_idx` (`order_id`);
+
+--
+-- Indexes for table `recept`
+--
+ALTER TABLE `recept`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `recept_ingredient`
+--
+ALTER TABLE `recept_ingredient`
+ ADD PRIMARY KEY (`recept_id`,`ingredient_id`), ADD KEY `fk_RECEPT_INGREDIENT_ingredient1_idx` (`ingredient_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `ingredient`
+--
+ALTER TABLE `ingredient`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `klant`
+--
+ALTER TABLE `klant`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `medewerker`
+--
+ALTER TABLE `medewerker`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `menu`
+--
+ALTER TABLE `menu`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `menu_soort`
+--
+ALTER TABLE `menu_soort`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `recept`
+--
+ALTER TABLE `recept`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `menu`
+--
+ALTER TABLE `menu`
+ADD CONSTRAINT `fk_menu_menu_soort1` FOREIGN KEY (`menu_soort_id`) REFERENCES `menu_soort` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `menu_recept`
+--
+ALTER TABLE `menu_recept`
+ADD CONSTRAINT `fk_menu_has_recept_menu1` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_menu_has_recept_recept1` FOREIGN KEY (`recept_id`) REFERENCES `recept` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `order`
+--
+ALTER TABLE `order`
+ADD CONSTRAINT `fk_ORDER_klant1` FOREIGN KEY (`klant_id`) REFERENCES `klant` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `order_regel`
+--
+ALTER TABLE `order_regel`
+ADD CONSTRAINT `fk_ORDER_REGEL_menu1` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_order_regel_order1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `recept_ingredient`
+--
+ALTER TABLE `recept_ingredient`
+ADD CONSTRAINT `fk_RECEPT_INGREDIENT_ingredient1` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredient` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_RECEPT_INGREDIENT_recept1` FOREIGN KEY (`recept_id`) REFERENCES `recept` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
