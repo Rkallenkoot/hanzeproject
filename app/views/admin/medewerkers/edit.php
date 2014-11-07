@@ -19,7 +19,7 @@ body {
 {% block content %}
 <div class="row">
 	<h1>Medewerker bewerken</h1>
-	<a href="{{constant('BASE')}}/admin_medewerkers" class="btn btn-primary">Terug</a> 
+	<a href="{{constant('BASE')}}/admin_medewerkers" class="btn btn-primary">Terug</a>
 	<hr>
 	<form action="{{constant('BASE')}}/admin_medewerkers/update/{{ medewerker.id }}" method="POST" role="form">
 		<div class="form-group">
@@ -44,7 +44,7 @@ body {
 		</div>
 		<div class="form-group">
 			<label for="Wachtwoord">Wachtwoord</label>
-			<input type="text" class="form-control" name="Wachtwoord" id="Wachtwoord" placeholder="Wachtwoord" value="">
+			<input type="password" class="form-control" name="Wachtwoord" id="Wachtwoord" placeholder="Wachtwoord" value="">
 		</div>
 
 		<button type="submit" class="btn btn-primary">Submit</button>
