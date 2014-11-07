@@ -43,7 +43,7 @@ body {
 			<input type="text" class="form-control" name="GR" id="GR" placeholder="GR">
 		</div>
 		<div class="form-group">
-			<label for="SG">SG</label>
+			<label for="SG">Standaard grootte</label>
 			<input type="text" class="form-control" name="SG" id="SG" placeholder="SG">
 		</div>
 
