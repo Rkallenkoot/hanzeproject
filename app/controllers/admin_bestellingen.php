@@ -2,6 +2,14 @@
 
 class Admin_Bestellingen extends Controller
 {
+	public function __construct()
+	{
+		$loggedIn = isset($_SESSION['medewerkerLoggedIn']) ? $_SESSION['medewerkerLoggedIn'] : false;
+		if(!$loggedIn)
+		{
+			return header("Location: ".BASE."/admin_auth");
+		}
+	}
 
 	public function index()
 	{
@@ -14,7 +22,7 @@ class Admin_Bestellingen extends Controller
 			);
 	}
 
-	public function afgerond() 
+	public function afgerond()
 	{
 		return $this->view("admin/bestellingen/afgerond",
 			array(
@@ -32,17 +40,17 @@ class Admin_Bestellingen extends Controller
 		$order_regels = array();
 		$order_regels[] = OrderRegel::where('order_id', '=', $order->id)->get();
 		$bestelling = array();
-		
+
 		$bestelling["order"] = $order->toArray();
 		// order regels
 		foreach($order_regels[0] as $key => $value) {
 			$bestelling["order"]["order_regels"][$key] = $value->toArray();
-			
+
 			// menus
 			$menus = Menu::where('id', '=', $value->toArray()["menu_id"])->get();
 			foreach($menus as $m => $enu) {
 				$bestelling["order"]["order_regels"][$key]["menus"][] = $enu->toArray();
-				
+
 				// menu_recepten
 				$menu_recepten = MenuRecept::where('menu_id', '=', $enu->toArray()["id"])->get();
 
@@ -76,7 +84,7 @@ class Admin_Bestellingen extends Controller
 			);
 	}
 
-	public function update($id) 
+	public function update($id)
 	{
 		if(!$_SERVER["REQUEST_METHOD"] == 'POST' || !is_numeric($id)){
 			return;
