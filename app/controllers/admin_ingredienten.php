@@ -26,7 +26,6 @@ class Admin_Ingredienten extends Controller
 			);
 	}
 
-	// werkt nu gewoon zonder confirm!
 	public function destroy($id)
 	{
 		if(!$_SERVER["REQUEST_METHOD"] == 'POST' || !is_numeric($id)){
