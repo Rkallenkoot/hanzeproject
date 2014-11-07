@@ -39,9 +39,7 @@ body {
 				<td>{{ best.status }}</td>
 				<td>{{ best.betaald }}</td>
 				<td>{{ best.geplaatst }}</td>
-				<td><a href="{{constant('BASE')}}/admin_bestellingen/show/{{ best.id }}" class="btn btn-primary btn-sm">Bekijk</a> 
-					<a href="{{constant('BASE')}}/admin_bestellingen/edit/{{ best.id }}" class="btn btn-primary btn-sm">Bewerken</a> 
-					<a href="#" class="btn btn-danger btn-sm" onclick="confirm_destroy('{{constant('BASE')}}/admin_bestellingen/destroy/', '{{ best.id }}');">Verwijderen</a></td>
+				<td><a href="{{constant('BASE')}}/admin_bestellingen/edit/{{ best.id }}" class="btn btn-primary btn-sm">Bewerken</a></td>
 			</tr>
 			{% endfor %}
 		</tbody>

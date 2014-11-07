@@ -39,10 +39,7 @@ body {
 				<td>{{ best.status }}</td>
 				<td>{{ best.betaald }}</td>
 				<td>{{ best.geplaatst }}</td>
-				<td><a href="{{constant('BASE')}}/admin_bestellingen/show/{{ best.id }}" class="btn btn-primary btn-sm">Bekijk</a>
-					<a href="{{constant('BASE')}}/admin_bestellingen/edit/{{ best.id }}" class="btn btn-primary btn-sm">Bewerken</a> 
-					<a href="#" class="btn btn-danger btn-sm" onclick="confirm_destroy('{{constant('BASE')}}/admin_bestellingen/destroy/', '{{ best.id }}');">Verwijderen</a>
-				</td>
+				<td><a href="{{constant('BASE')}}/admin_bestellingen/edit/{{ best.id }}" class="btn btn-primary btn-sm">Bewerken</a></td>
 			</tr>
 			{% endfor %}
 		</tbody>
@@ -69,10 +66,34 @@ body {
 				<td>{{ best.status }}</td>
 				<td>{{ best.betaald }}</td>
 				<td>{{ best.geplaatst }}</td>
-				<td><a href="{{constant('BASE')}}/admin_bestellingen/show/{{ best.id }}" class="btn btn-primary btn-sm">Bekijk</a>
-					<a href="{{constant('BASE')}}/admin_bestellingen/edit/{{ best.id }}" class="btn btn-primary btn-sm">Bewerken</a> 
-					<a href="#" class="btn btn-danger btn-sm" onclick="confirm_destroy('{{constant('BASE')}}/admin_bestellingen/destroy/', '{{ best.id }}');">Verwijderen</a>
-				</td>
+				<td><a href="{{constant('BASE')}}/admin_bestellingen/edit/{{ best.id }}" class="btn btn-primary btn-sm">Bewerken</a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<hr>
+	<h1>Afgeronde bestellingen nog NIET betaald</h1>
+	<hr>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Klant</th>
+				<th>Status</th>
+				<th>Betaald</th>
+				<th>Geplaatst</th>
+				<th>Acties</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for best in bestellingen_niet_afgerond_welbetaald %}
+			<tr>
+				<td>{{ best.id }}</td>
+				<td>{{ best.klant_id }}</td>
+				<td>{{ best.status }}</td>
+				<td>{{ best.betaald }}</td>
+				<td>{{ best.geplaatst }}</td>
+				<td><a href="{{constant('BASE')}}/admin_bestellingen/edit/{{ best.id }}" class="btn btn-primary btn-sm">Bewerken</a></td>
 			</tr>
 			{% endfor %}
 		</tbody>

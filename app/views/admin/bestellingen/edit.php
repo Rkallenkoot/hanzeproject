@@ -55,15 +55,43 @@ body {
 			<div class="form-group">
 				<label for="status" class="col-sm-4 control-label">Status</label>
 				<div class="col-sm-8">
-					<!-- moet een select box worden -->
-					<input type="text" class="form-control" name="status" id="status" placeholder="status" value="{{ best.order.status }}">
+					<select class="form-control" name="status" >
+						{% if best.order.status == 'geplaatst' %}
+						<option selected="selected" value="geplaatst">Geplaatst</option>
+						{% else %}
+						<option value="geplaatst">Geplaatst</option>
+						{% endif %}
+
+						{% if best.order.status == 'in bereiding' %}
+						<option selected="selected" value="in bereiding">In bereiding</option>
+						{% else %}
+						<option value="in bereiding">In bereiding</option>
+						{% endif %}
+
+						{% if best.order.status == 'klaar' %}
+						<option selected="selected" value="klaar">Klaar</option>
+						{% else %}
+						<option value="klaar">Klaar</option>
+						{% endif %}
+					</select>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="betaald" class="col-sm-4 control-label">Betaald</label>
 				<div class="col-sm-8">
-					<!-- moet een select box worden -->
-					<input type="text" class="form-control" name="betaald" id="betaald" placeholder="betaald" value="{{ best.order.betaald }}">
+					<select class="form-control" name="betaald" >
+						{% if best.order.betaald == true %}
+						<option selected="selected" value="1">Ja</option>
+						{% else %}
+						<option value="1">Ja</option>
+						{% endif %}
+
+						{% if best.order.betaald == false %}
+						<option selected="selected" value="0">Nee</option>
+						{% else %}
+						<option value="0">Nee</option>
+						{% endif %}
+					</select>
 				</div>
 			</div>
 
