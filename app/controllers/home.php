@@ -21,11 +21,10 @@ class Home extends Controller
 
 		return $this->view("home/index",
 			array(
-				'daghap' => $daghap,
-				'test' => $results,
-				'soorten'	=> $soorten,
+				'daghap'   => $daghap,
+				'soorten'  => $soorten,
 				'voornaam' => isset($_SESSION['voornaam']) ? $_SESSION['voornaam'] : "",
-				'session'=> isset($_SESSION['menu']) ? $_SESSION['menu'] : array(),
+				'session'  => isset($_SESSION['menu']) ? $_SESSION['menu'] : array(),
 				'loggedIn' => isset($_SESSION['loggedIn']) ? True : NULL
 				)
 			);

@@ -39,8 +39,7 @@
 							<li><a href="{{constant('BASE')}}/admin_menu_soorten">Menu soorten</a></li>
 							<li><a href="{{constant('BASE')}}/admin_medewerkers">Medewerkers</a></li>
 							<li><a href="{{constant('BASE')}}/admin_klanten">Klanten</a></li>
-
-							<li><a href="{{constant('BASE')}}/admin_loguit">Loguit</a></li>
+							<li><a href="{{constant('BASE')}}/admin_auth/logout"><i class="fa fa-sign-out"></i>Uitloggen</a></li>
 						</div><!--/.navbar-collapse -->
 					</div>
 				</nav>

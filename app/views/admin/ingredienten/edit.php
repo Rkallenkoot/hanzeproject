@@ -19,7 +19,7 @@ body {
 {% block content %}
 <div class="row">
 	<h1>Ingredient aanpassen</h1>
-	<a href="{{constant('BASE')}}/admin_ingredienten" class="btn btn-primary">Terug</a> 
+	<a href="{{constant('BASE')}}/admin_ingredienten" class="btn btn-primary">Terug</a>
 	<hr>
 	<form action="{{constant('BASE')}}/admin_ingredienten/update/{{ ingredient.id }}" method="POST" role="form">
 		<div class="form-group">
@@ -32,19 +32,19 @@ body {
 		</div>
 		<div class="form-group">
 			<label for="TV">Technische voorraad</label>
-			<input type="text" class="form-control" name="TV" id="TV" placeholder="Technische voorraad" value="{{ ingredient.tv }}">
+			<input type="number" class="form-control" name="TV" id="TV" placeholder="Technische voorraad" value="{{ ingredient.tv }}">
 		</div>
 		<div class="form-group">
 			<label for="IB">Aantal in bestelling</label>
-			<input type="text" class="form-control" name="IB" id="IB" placeholder="Aantal in bestelling" value="{{ ingredient.ib }}">
+			<input type="number" class="form-control" name="IB" id="IB" placeholder="Aantal in bestelling" value="{{ ingredient.ib }}">
 		</div>
 		<div class="form-group">
 			<label for="GR">Gereserveerd</label>
-			<input type="text" class="form-control" name="GR" id="GR" placeholder="GR" value="{{ ingredient.gr }}">
+			<input type="number" class="form-control" name="GR" id="GR" placeholder="GR" value="{{ ingredient.gr }}">
 		</div>
 		<div class="form-group">
 			<label for="SG">SG</label>
-			<input type="text" class="form-control" name="SG" id="SG" placeholder="SG" value="{{ ingredient.sg }}">
+			<input type="number" class="form-control" name="SG" id="SG" placeholder="SG" value="{{ ingredient.sg }}">
 		</div>
 
 		<button type="submit" class="btn btn-primary">Submit</button>

@@ -2,6 +2,14 @@
 
 class Admin_Medewerkers extends Controller
 {
+	public function __construct()
+	{
+		$loggedIn = isset($_SESSION['medewerkerLoggedIn']) ? $_SESSION['medewerkerLoggedIn'] : false;
+		if(!$loggedIn)
+		{
+			return header("Location: ".BASE."/admin_auth");
+		}
+	}
 
 	public function index()
 	{
@@ -37,7 +45,7 @@ class Admin_Medewerkers extends Controller
 		return http_response_code(200);
 	}
 
-	public function update($id) 
+	public function update($id)
 	{
 		if(!$_SERVER["REQUEST_METHOD"] == 'POST' || !is_numeric($id)){
 			return;
@@ -57,7 +65,7 @@ class Admin_Medewerkers extends Controller
 		return header("Location: " . BASE . "/admin_medewerkers");
 	}
 
-	public function store() 
+	public function store()
 	{
 		if(!$_SERVER["REQUEST_METHOD"] == "POST"){
 			return;
