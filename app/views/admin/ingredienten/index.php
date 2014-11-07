@@ -42,7 +42,10 @@ body {
 				<td>{{ ingr.ib }}</td>
 				<td>{{ ingr.gr }}</td>
 				<td>{{ ingr.sg }}</td>
-				<td><a href="{{constant('BASE')}}/admin_ingredienten/edit/{{ ingr.id }}" class="btn btn-primary btn-sm">Bewerken</a> <a href="#" class="btn btn-danger btn-sm" onclick="confirm_destroy('{{constant('BASE')}}/admin_ingredienten/destroy/', '{{ ingr.id }}');">Verwijderen</a></td>
+				<td>
+					<a href="{{constant('BASE')}}/admin_ingredienten/edit/{{ ingr.id }}" class="btn btn-primary btn-sm">Bewerken</a> 
+					<a href="#" class="btn btn-danger btn-sm" onclick="confirm_destroy('{{constant('BASE')}}/admin_ingredienten/destroy/', '{{ ingr.id }}');">Verwijderen</a>
+				</td>
 			</tr>
 			{% endfor %}
 		</tbody>

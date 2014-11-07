@@ -16,8 +16,7 @@ class Admin_Bestellingen extends Controller
 		return $this->view("admin/bestellingen/index",
 			array(
 				'bestellingen_geplaatst' => Order::where('status', '=', 'geplaatst')->get(),
-				'bestellingen_inbehandeling' => Order::where('status', '=', 'in bereiding')->get(),
-				'bestellingen_niet_afgerond_welbetaald' => Order::where('status', '=', 'klaar')->where('betaald', '=', '0')->get()
+				'bestellingen_inbehandeling' => Order::where('status', '=', 'in bereiding')->get()
 				)
 			);
 	}
@@ -28,7 +27,8 @@ class Admin_Bestellingen extends Controller
 			array(
 				'bestellingen' => Order::where('status', '=', 'klaar')
 				->where('betaald', '=', '1')
-				->get()
+				->get(),
+				'bestellingen_niet_afgerond_welbetaald' => Order::where('status', '=', 'klaar')->where('betaald', '=', '0')->get()
 				)
 			);
 	}
