@@ -101,7 +101,7 @@ class Admin_Bestellingen extends Controller
 			}
 		}*/
 		
-		print_r($bestelling);
+		//print_r($bestelling);
 		echo "</pre>";
 		return $this->view("admin/bestellingen/show",
 			array(
