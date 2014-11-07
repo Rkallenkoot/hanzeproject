@@ -43,7 +43,7 @@ body {
 			<input type="number" class="form-control" name="GR" id="GR" placeholder="GR" value="{{ ingredient.gr }}">
 		</div>
 		<div class="form-group">
-			<label for="SG">SG</label>
+			<label for="SG">Standaard grootte</label>
 			<input type="number" class="form-control" name="SG" id="SG" placeholder="SG" value="{{ ingredient.sg }}">
 		</div>
 
