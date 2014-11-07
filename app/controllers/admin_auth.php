@@ -25,7 +25,9 @@ class Admin_Auth extends Controller
 		$user = Medewerker::where("gebruikersnaam", "=", $username)->first();
 
 		if(!$user){
-			return header("Location: ".BASE."/admin_auth");
+			return $this->view('admin/auth/index',array(
+				'message' => "Onbekende combinatie!"));
+			// return header("Location: ".BASE."/admin_auth");
 		}
 		elseif($user && $user->wachtwoord == md5($password))
 		{
@@ -37,7 +39,12 @@ class Admin_Auth extends Controller
 			return $this->view('admin/auth/index', array(
 				'message' => "Onbekende combinatie!"));
 		}
+	}
 
+	public function logout()
+	{
+		session_destroy();
+		return header("Location: ".BASE."/admin_auth");
 	}
 
 }

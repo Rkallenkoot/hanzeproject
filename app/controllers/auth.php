@@ -7,9 +7,9 @@ class Auth extends Controller
 	{
 		return $this->view("auth/index",array(
 			'voornaam' => isset($_SESSION['voornaam']) ? $_SESSION['voornaam'] : "",
-				'session'  => isset($_SESSION['menu']) ? $_SESSION['menu'] : array(),
-				'loggedIn' => isset($_SESSION['loggedIn']) ? True : NULL
-				));
+			'session'  => isset($_SESSION['menu']) ? $_SESSION['menu'] : array(),
+			'loggedIn' => isset($_SESSION['loggedIn']) ? True : NULL
+			));
 	}
 
 	public function login()

@@ -22,7 +22,6 @@ Eat.it or Beat it!
 
 {% block content %}
 <div class="row">
-	{% if message %}<h3>{{message}}</h3>{% endif %}
 	<div class="col-md-5">
 		<form class="form-horizontal" action="{{constant('BASE')}}/admin_auth/login" role="form" method="POST">
 			<legend class="text-center">Inloggen als medewerker</legend>
@@ -44,6 +43,9 @@ Eat.it or Beat it!
 				</div>
 			</div>
 		</form>
+	</div>
+	<div class="col-md-7">
+		{% if message %}<h3>{{message}}</h3>{% endif %}
 	</div>
 </div>
 {% endblock %}
