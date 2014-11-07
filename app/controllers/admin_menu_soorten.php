@@ -3,6 +3,15 @@
 class Admin_Menu_Soorten extends Controller
 {
 
+	public function __construct()
+	{
+		$loggedIn = isset($_SESSION['medewerkerLoggedIn']) ? $_SESSION['medewerkerLoggedIn'] : false;
+		if(!$loggedIn)
+		{
+			return header("Location: ".BASE."/admin_auth");
+		}
+	}
+
 	public function index()
 	{
 		return $this->view("admin/menu_soorten/index",
