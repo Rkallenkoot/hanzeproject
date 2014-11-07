@@ -35,14 +35,12 @@ Eat.it or Beat it!
 				</tr>
 			</thead>
 			<tbody>
-				{% for men in menu %}
-				{% for m in men %}
+				{% for m in menu %}
 				<tr>
 					<td>{{m.naam}}</td>
 					<td>{{m.aantal}}</td>
 					<td>{{m.prijs}}</td>
 				</tr>
-				{% endfor %}
 				{% endfor %}
 				<tr>
 				<td></td>
@@ -55,13 +53,10 @@ Eat.it or Beat it!
 </div>
 <div class="row">
 	<div class="col-md-8">
-		<form class="form-horizontal" action="{{constant('BASE')}}/order/add" method="POST" role="form">
-			<div class="form-group">
-				<label class="col-xs-4 col-sm-2 control-label">Klantnummer</label>
-				<div class="col-xs-8 col-sm-10">
-					<p class="form-control-static">{{klant.id}}</p>
-				</div>
-			</div>
+		<form class="form-horizontal" action="{{constant('BASE')}}/orders/add" method="POST" role="form">
+			{% for m in menu %}
+			<input type="hidden" name="order[{{m.id}}]" value="{{m.aantal}}">
+			{% endfor %}
 			<div class="form-group">
 				<label class="col-xs-4 col-sm-2 control-label">Voornaam</label>
 				<div class="col-xs-8 col-sm-10">
@@ -75,9 +70,21 @@ Eat.it or Beat it!
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="adres" class="col-xs-4 col-sm-2 control-label">Afleveradres</label>
+				<label for="adres" class="col-xs-4 col-sm-2 control-label">Afleveradres*</label>
 				<div class="col-xs-8 col-sm-10">
-					<input type="text" class="form-control" id="adres" placeholder="Afleveradres" value="{{klant.adres}}">
+					<input type="text" class="form-control" id="adres" name="adres" placeholder="Afleveradres" required value="{{klant.adres}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="postcode" class="col-xs-4 col-sm-2 control-label">Postcode</label>
+				<div class="col-xs-8 col-sm-10">
+					<input type="text" class="form-control" name="postcode" id="postcode" placeholder="Postcode" value="{{klant.postcode}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="adres" class="col-xs-4 col-sm-2 control-label">Woonplaats*</label>
+				<div class="col-xs-8 col-sm-10">
+					<input type="text" class="form-control" required id="woonplaats" name="woonplaats" placeholder="Woonplaats" value="{{klant.woonplaats}}">
 				</div>
 			</div>
 			<div class="form-group">

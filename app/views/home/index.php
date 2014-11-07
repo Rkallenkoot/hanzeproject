@@ -19,7 +19,7 @@ Eat.it or Beat it!
 	<div class="container">
 		<h1><img src="{{constant('ASSET_ROOT')}}/images/eatit.jpg" alt="Eat it Logo!" class="img-circle"> Daghap</h1>
 		<p>Bestel nu een - {{daghap.naam}} voor maar &euro;{{daghap.prijs}}!</p>
-		<p><button class="btn btn-primary btn-lg" role="button" onclick="orderMenu('{{constant('BASE')}}/order/addMenu/{{daghap.id}}')">Bestellen die handel!</button></p>
+		<p><button class="btn btn-primary btn-lg" role="button" onclick="orderMenu('{{constant('BASE')}}/orders/addMenu/{{daghap.id}}')">Bestellen die handel!</button></p>
 	</div>
 </div>
 {% else %}
@@ -35,7 +35,7 @@ Eat.it or Beat it!
 
 {% block content %}
 <div class="row">
-	<form class="form-horizontal" action="{{constant('BASE')}}/order/update" method="POST" role="form">
+	<form class="form-horizontal" action="{{constant('BASE')}}/orders/update" method="POST" role="form">
 		{% for soort in soorten %}
 		<div class="col-md-3">
 			<div class="panel panel-default">
@@ -79,7 +79,7 @@ Eat.it or Beat it!
 </div>
 
 {% if loggedIn %}
-<form class="form-horizontal" action="{{constant('BASE')}}/order/edit" method="POST" role="form">
+<form class="form-horizontal" action="{{constant('BASE')}}/orders/edit" method="POST" role="form">
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-6">
 			<input class="btn btn-success btn-lg btn-block" type="submit" name="confirm" value="Bestelling Plaatsen">
