@@ -15,6 +15,10 @@ Eat.it or Beat it!
 {% block header %}
 
 {% if daghap %}
+{#
+ # Daghap "omzeilt" max input value client-side
+ # Dit is natuurlijk een feature omdat het de Daghap is
+ #}
 <div class="jumbotron">
 	<div class="container">
 		<h1><img src="{{constant('ASSET_ROOT')}}/images/eatit.jpg" alt="Eat it Logo!" class="img-circle"> Daghap</h1>
@@ -35,12 +39,19 @@ Eat.it or Beat it!
 
 {% block content %}
 <div class="row">
+
 	<form class="form-horizontal" action="{{constant('BASE')}}/orders/update" method="POST" role="form">
 		{% for soort in soorten %}
 		<div class="col-md-3">
 			<div class="panel panel-default">
 				<div class="panel-heading"><h3 class="panel-title">{{soort.naam}}</h3></div>
 				{% for menu in soort.menus %}
+				{#
+				 # Twig variables are scoped to the for loop
+				 # Because we need to calculate this PER menu, we define them here.
+				 #}
+				{% set lowestBes = NULL %}
+				{% set out = NULL %}
 				<div class="panel-body">
 					<h4>Menu: {{menu.naam}}</h4>
 					<div class="form-group">
@@ -52,13 +63,25 @@ Eat.it or Beat it!
 					<div class="form-group">
 						<label for="{{menu.id}}" class="col-xs-3 col-md-5 control-label">Beschikbaar</label>
 						<div class="col-xs-9 col-md-7">
-							<p id="{{menu.id}}" class="form-control-static">100</p>
+							<p id="{{menu.id}}" class="form-control-static">
+							{% for rec in menu.recepten if rec.ingredienten is not null %}
+								{% for ing in rec.ingredienten %}
+										{% if (ing.ev / ing.pivot.aantal < lowestBes) or (lowestBes is null) %}
+											{% set lowestBes = (ing.ev / ing.pivot.aantal) %}
+											{{lowestBes}}
+										{% endif %}
+								{% endfor %}
+								{% else %}
+									{% set out = true %}
+									Niet beschikbaar
+							{% endfor %}
+							</p>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="aantal" class="col-xs-3 col-md-5 control-label">Aantal</label>
+						<label for="aantal{{menu.id}}" class="col-xs-3 col-md-5 control-label">Aantal</label>
 						<div class="col-xs-5 col-md-7">
-							<input id="aantal" type="number" class="form-control" name="menu[{{menu.id}}]" min="0" value="{% if session[menu.id] %}{{session[menu.id]}}{% else %}0{% endif %}">
+							<input id="aantal{{menu.id}}" type="number" {{out ? 'disabled'}} class="form-control" name="menu[{{menu.id}}]" min="0" max="{{lowestBes ? lowestBes : 0}}" value="{% if session[menu.id] %}{{session[menu.id]}}{% else %}0{% endif %}">
 						</div>
 					</div>
 				</div>

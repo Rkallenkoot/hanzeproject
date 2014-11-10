@@ -10,7 +10,6 @@ class Recept extends Eloquent
 
 	protected $fillable = array("naam");
 
-	// protected $appends = array('aantal');
 	/**
 	 * Timestamps should be false or
 	 * an array with: "created_at" and/or "updated_at"
