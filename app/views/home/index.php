@@ -39,7 +39,6 @@ Eat.it or Beat it!
 
 {% block content %}
 <div class="row">
-
 	<form class="form-horizontal" action="{{constant('BASE')}}/orders/update" method="POST" role="form">
 		{% for soort in soorten %}
 		<div class="col-md-3">
@@ -100,16 +99,21 @@ Eat.it or Beat it!
 
 	</form>
 </div>
-
+<div class="row">
+<div class="col-sm-12">
 {% if loggedIn %}
 <form class="form-horizontal" action="{{constant('BASE')}}/orders/edit" method="POST" role="form">
 	<div class="form-group">
-		<div class="col-sm-offset-3 col-sm-6">
+		<div class="col-sm-12">
 			<input class="btn btn-success btn-lg btn-block" type="submit" name="confirm" value="Bestelling Plaatsen">
 		</div>
 	</div>
 </form>
+{% else %}
+<a href="{{constant('BASE')}}/auth" class="btn btn-info btn-lg btn-block">Log in om verder te gaan.</a>
 {% endif %}
+</div>
+</div>
 {% endblock %}
 
 {% block footer %}

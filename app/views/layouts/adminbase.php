@@ -35,7 +35,7 @@
 							<li><a href="{{constant('BASE')}}/admin_bestellingen/afgerond">Afgeronde bestellingen</a></li>
 							<li><a href="{{constant('BASE')}}/admin_ingredienten">Ingredienten</a></li>
 							<li><a href="{{constant('BASE')}}/admin_recepten">Recepten</a></li>
-							<li><a href="{{constant('BASE')}}/admin_menus">Menu's</a></li>
+							<!-- <li><a href="{{constant('BASE')}}/admin_menus">Menu's</a></li> -->
 							<li><a href="{{constant('BASE')}}/admin_menu_soorten">Menu soorten</a></li>
 							<li><a href="{{constant('BASE')}}/admin_medewerkers">Medewerkers</a></li>
 							<li><a href="{{constant('BASE')}}/admin_klanten">Klanten</a></li>

@@ -36,14 +36,13 @@ class Orders extends Controller
 		// Order plaatsen als dat mogelijk is
 		$newOrder = new Order(array("klant_id" => $klant->id));
 		$newOrder->save();
-		// Order opslaan in Database
-		// $newOrder->save();
 
 		foreach($_POST['order'] as $menu => $aantal)
 		{
 			// Volledig menu selecteren
 			$m = Menu::where("id", '=', $menu)->first();
-			$newOrder->menus()->save($m, array('aantal' => $aantal, 'prijs' => $m->prijs));
+			$newOrder->menus()->save($m,
+				array('aantal' => $aantal, 'prijs' => $m->prijs));
 		}
 
 		return $this->view('order/thanku', array(
@@ -98,10 +97,10 @@ class Orders extends Controller
 			{
 				$m = Menu::find($menu);
 				$finalMenu[] = array(
-						'id'     => $menu,
-						'aantal' => $aantal,
-						'naam'   => $m->naam,
-						'prijs'  => $m->prijs
+					'id'     => $menu,
+					'aantal' => $aantal,
+					'naam'   => $m->naam,
+					'prijs'  => $m->prijs
 					);
 				// Als er minimaal 1 aantal op true is
 				$bestelling = true;
@@ -127,15 +126,4 @@ class Orders extends Controller
 			));
 	}
 
-	public function confirm()
-	{
-
-	}
-
-	public function test()
-	{
-		echo "<pre>";
-		var_dump($_SESSION['menu']);
-		echo "</pre>";
-	}
 }

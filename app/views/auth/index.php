@@ -70,7 +70,7 @@ Eat.it or Beat it!
 			<div class="form-group">
 			<label for="Telefoon" class="col-sm-4 control-label">Telefoon</label>
 				<div class="col-sm-8">
-					<input type="email" class="form-control" name="telefoon" id="Telefoon" placeholder="Telefoon">
+					<input type="text" class="form-control" name="telefoon" id="Telefoon" placeholder="Telefoon">
 				</div>
 			</div>
 			<div class="form-group">

@@ -40,9 +40,4 @@ class Menu extends Eloquent
 		return $this::where('actief','=',true)->where('daghap','=',true)->get();
 	}
 
-	public function id()
-	{
-		return $this->id;
-	}
-
 }
