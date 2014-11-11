@@ -13,11 +13,8 @@ class Home extends Controller
 		$soorten = MenuSoort::whereHas('menus', function($q)
 		{
 			$q->where('menu.actief', '=', true);
-		})->with('menus')->get();
+		})->with('menus.recepten.ingredienten')->get();
 
-		$menus = $soorten->lists('id');
-		$recepten = Recept::find($menus)->lists('id');
-		$results = Ingredient::find($recepten)->lists('id');
 
 		return $this->view("home/index",
 			array(
